@@ -1,0 +1,35 @@
+# 👍 VRCThumbParams
+VRChat Mod that makes Valve Index thumb positions accessible in Avatar V3 Parameters
+
+## 💾 Installation
+
+Simple! Drag "ThumbParam.dll" into your MelonLoader Mods folder and you're done with installation!
+
+## 🛠 Avatar Setup
+
+Now here's the part that can be tricky for some users. The mod simply reads the "touching" state of all Index controller face buttons and outputs them to two avatar params of "int" type.
+You'll need to add these **case-sensitive** parameters to your avatar's base parameters:
+
+* RightThumb
+* LeftThumb
+
+The mod will set these parameters with an integer from 0-4 representing the position of each thumb.
+
+| Value | Real Position |
+| ----- | ------------- |
+| 0     | Not Touching  |
+| 1     | A Button      |
+| 2     | B Button      |
+| 3     | Trackpad      |
+| 4     | Thumbstick    |
+
+From these, you're free to modify and/or play animations from your animation controllers however you wish!
+
+## 📜 Disclaimer
+
+As with all mods, any modification to VRChat's Client or SDK can lead to a ban or other punishment.<br>
+I will not be held responsible for any punishments that you may be given for using this mod.<br> 
+**USE AT YOUR OWN RISK**
+
+## 👋 Credits
+* [HerpDerpinstine/MelonLoader](https://github.com/HerpDerpinstine/MelonLoader)
