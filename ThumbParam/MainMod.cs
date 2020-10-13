@@ -96,9 +96,7 @@ namespace ThumbParam
             var leftThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
                     "ThumbSpreadLeft"].field_Private_Single_6);
-
-            GameObject.Find("InputManager").GetComponent<VRCInputProcessorKeyboard>().field_Private_ObjectPublicStSiBoSiObBoSiObStSiUnique_23 = new ObjectPublicStSiBoSiObBoSiObStSiUnique("");
-
+            
             var rightThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
                     "ThumbSpreadRight"].field_Private_Single_6);
