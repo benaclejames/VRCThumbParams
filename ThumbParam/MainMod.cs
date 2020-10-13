@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MelonLoader;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace ThumbParam
         public override void VRChat_OnUiManagerInit()
         {
             MelonCoroutines.Start(UpdateParamStores());
+            MelonLogger.Log(ConsoleColor.Cyan, "Initialized Sucessfully!");
         }
 
         IEnumerator UpdateParamStores()
@@ -28,6 +30,27 @@ namespace ThumbParam
                 leftThumb = tempLeftThumb != -1
                     ? (AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique) tempLeftThumb
                     : AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None;
+                if (VRCPlayer.field_Internal_Static_VRCPlayer_0?.field_Private_VRC_AnimationController_0?.field_Private_AvatarAnimParamController_0?.field_Private_AvatarPlayableController_0 == null)
+                    continue;
+                
+                AvatarPlayableController controller = VRCPlayer.field_Internal_Static_VRCPlayer_0
+                    .field_Private_VRC_AnimationController_0
+                    .field_Private_AvatarAnimParamController_0
+                    .field_Private_AvatarPlayableController_0;
+                if (rightThumb != AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
+                {
+                    controller.Method_Public_Void_Int32_Boolean_0(tempRightThumb, true);
+                    controller.Method_Public_Boolean_Int32_Boolean_PDM_0(tempRightThumb, true);
+                    controller.Method_Public_Void_Int32_Boolean_1(tempRightThumb, true);
+                    controller.Method_Public_Void_Int32_Boolean_2(tempRightThumb, true);
+                }
+                if (leftThumb != AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
+                {
+                    controller.Method_Public_Void_Int32_Boolean_0(tempLeftThumb, true);
+                    controller.Method_Public_Boolean_Int32_Boolean_PDM_0(tempLeftThumb, true);
+                    controller.Method_Public_Void_Int32_Boolean_1(tempLeftThumb, true);
+                    controller.Method_Public_Void_Int32_Boolean_2(tempLeftThumb, true);
+                }
             }
         }
         
@@ -73,7 +96,9 @@ namespace ThumbParam
             var leftThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
                     "ThumbSpreadLeft"].field_Private_Single_6);
-            
+
+            GameObject.Find("InputManager").GetComponent<VRCInputProcessorKeyboard>().field_Private_ObjectPublicStSiBoSiObBoSiObStSiUnique_23 = new ObjectPublicStSiBoSiObBoSiObStSiUnique("");
+
             var rightThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
                     "ThumbSpreadRight"].field_Private_Single_6);
