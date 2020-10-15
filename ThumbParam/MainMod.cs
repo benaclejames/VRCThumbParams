@@ -30,27 +30,6 @@ namespace ThumbParam
                 leftThumb = tempLeftThumb != -1
                     ? (AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique) tempLeftThumb
                     : AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None;
-                if (VRCPlayer.field_Internal_Static_VRCPlayer_0?.field_Private_VRC_AnimationController_0?.field_Private_AvatarAnimParamController_0?.field_Private_AvatarPlayableController_0 == null)
-                    continue;
-                
-                AvatarPlayableController controller = VRCPlayer.field_Internal_Static_VRCPlayer_0
-                    .field_Private_VRC_AnimationController_0
-                    .field_Private_AvatarAnimParamController_0
-                    .field_Private_AvatarPlayableController_0;
-                if (rightThumb != AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
-                {
-                    controller.Method_Public_Void_Int32_Boolean_0(tempRightThumb, true);
-                    controller.Method_Public_Boolean_Int32_Boolean_PDM_0(tempRightThumb, true);
-                    controller.Method_Public_Void_Int32_Boolean_1(tempRightThumb, true);
-                    controller.Method_Public_Void_Int32_Boolean_2(tempRightThumb, true);
-                }
-                if (leftThumb != AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
-                {
-                    controller.Method_Public_Void_Int32_Boolean_0(tempLeftThumb, true);
-                    controller.Method_Public_Boolean_Int32_Boolean_PDM_0(tempLeftThumb, true);
-                    controller.Method_Public_Void_Int32_Boolean_1(tempLeftThumb, true);
-                    controller.Method_Public_Void_Int32_Boolean_2(tempLeftThumb, true);
-                }
             }
         }
         
@@ -116,10 +95,11 @@ namespace ThumbParam
         private void SetParameter(AvatarAnimParamController controller,
             AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique param, int state)
         {
-            if (controller?.field_Private_AvatarPlayableController_0 != null && param != AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
-                controller.field_Private_AvatarPlayableController_0
-                    .Method_Public_Void_EnumNPublicSealedvaStNoSt18StStStStStUnique_Single_0(
-                        param, state);
+            if (controller == null || controller.field_Private_AvatarPlayableController_0 == null ||
+                param == AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
+                return;
+            controller.field_Private_AvatarPlayableController_0
+                .Method_Public_Void_EnumNPublicSealedvaStNoSt18StStStStStUnique_Single_0(param, state);
         }
 
         enum ThumbState
