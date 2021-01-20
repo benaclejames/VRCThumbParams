@@ -36,5 +36,5 @@ using ThumbParam;
 [assembly: AssemblyVersion("1.1.0.0")]
 [assembly: AssemblyFileVersion("1.1.0.0")]
 
-[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1", "benaclejames")]
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.1", "benaclejames")]
 [assembly: MelonGame("VRChat", "VRChat")]

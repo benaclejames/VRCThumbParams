@@ -7,6 +7,8 @@ Simple! Drag "ThumbParam.dll" into your MelonLoader Mods folder and you're done 
 
 ## 🛠 Avatar Setup
 
+If you're here with the intention to use this mod for sign language, I reccomend checking out [Priestess' Guide](https://github.com/shrine-priestess/Index-ASL-Gestures) for ASL gestures before reading this.
+
 Now here's the part that can be tricky for some users. The mod simply reads the "touching" state of all Index controller face buttons and outputs them to two avatar params of "int" type.
 You'll need to add these **case-sensitive** parameters to your avatar's base parameters:
 
