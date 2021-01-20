@@ -9,7 +9,7 @@ namespace ThumbParam
 {
     public class MainMod : MelonMod
     {
-        private AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique rightThumb, leftThumb;
+        private int rightThumb, leftThumb;
 
         public override void VRChat_OnUiManagerInit()
         {
@@ -22,14 +22,8 @@ namespace ThumbParam
             for (;;)
             {
                 yield return new WaitForSeconds(2);
-                var tempRightThumb = GetParamIndex("RightThumb");
-                var tempLeftThumb = GetParamIndex("LeftThumb");
-                rightThumb = tempRightThumb != -1
-                    ? (AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique) tempRightThumb
-                    : AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None;
-                leftThumb = tempLeftThumb != -1
-                    ? (AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique) tempLeftThumb
-                    : AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None;
+                rightThumb = GetParamIndex("RightThumb");
+                leftThumb = GetParamIndex("LeftThumb");
             }
         }
         
@@ -93,13 +87,13 @@ namespace ThumbParam
         }
 
         private void SetParameter(AvatarAnimParamController controller,
-            AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique param, int state)
+            int paramIndex, int state)
         {
             if (controller == null || controller.field_Private_AvatarPlayableController_0 == null ||
-                param == AvatarPlayableController.EnumNPublicSealedvaStNoSt18StStStStStUnique.None)
+                paramIndex == -1)
                 return;
-            controller.field_Private_AvatarPlayableController_0
-                .Method_Public_Void_EnumNPublicSealedvaStNoSt18StStStStStUnique_Single_0(param, state);
+
+            controller.field_Private_AvatarPlayableController_0.Method_Public_Boolean_Int32_Single_0(paramIndex, state);
         }
 
         enum ThumbState
