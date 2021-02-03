@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using MelonLoader;
+using ThumbParam;
 using UnityEngine;
 using VRC.SDK3.Avatars.ScriptableObjects;
+
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.2", "benaclejames")]
+[assembly: MelonGame("VRChat", "VRChat")]
 
 namespace ThumbParam
 {
@@ -59,18 +64,18 @@ namespace ThumbParam
         
         public override void OnUpdate()
         {
-            if (VRCInputManager.field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
+            if (VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadLeft"] == null ||
-                VRCInputManager.field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
+                VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadRight"] == null)
                 return;
 
             var leftThumb = ConvertToThumbState(VRCInputManager
-                .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
+                .field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadLeft"].field_Private_Single_6);
             
             var rightThumb = ConvertToThumbState(VRCInputManager
-                .field_Private_Static_Dictionary_2_String_ObjectPublicStSiBoSiObBoSiObStSiUnique_0[
+                .field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadRight"].field_Private_Single_6);
             
             AvatarAnimParamController controller = null;
@@ -88,11 +93,12 @@ namespace ThumbParam
         private void SetParameter(AvatarAnimParamController controller,
             int paramIndex, int state)
         {
+            
             if (controller == null || controller.field_Private_AvatarPlayableController_0 == null ||
                 paramIndex == -1)
                 return;
-
-            controller.field_Private_AvatarPlayableController_0.Method_Public_Boolean_Int32_Single_0(paramIndex, state);
+            
+            controller.field_Private_AvatarPlayableController_0.Method_Public_Boolean_Int32_Single_3(paramIndex, state);
         }
 
         enum ThumbState
