@@ -6,7 +6,7 @@ using ThumbParam;
 using UnityEngine;
 using VRC.SDK3.Avatars.ScriptableObjects;
 
-[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.2", "benaclejames")]
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.3", "benaclejames")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace ThumbParam
@@ -18,7 +18,7 @@ namespace ThumbParam
         public override void VRChat_OnUiManagerInit()
         {
             MelonCoroutines.Start(UpdateParamStores());
-            MelonLogger.Log(ConsoleColor.Cyan, "Initialized Sucessfully!");
+            MelonLogger.Msg(ConsoleColor.Cyan, "Initialized Sucessfully!");
         }
 
         IEnumerator UpdateParamStores()
@@ -62,6 +62,20 @@ namespace ThumbParam
             return index;
         }
         
+        internal static SteamVR_ControllerManager GetControllerManager()
+        {
+            foreach (var vrcTracking in VRCTrackingManager.field_Private_Static_VRCTrackingManager_0
+                .field_Private_List_1_VRCTracking_0)
+            {
+                var vrcTrackingSteam = vrcTracking.TryCast<VRCTrackingSteam>();
+                if (vrcTrackingSteam == null) continue;
+
+                return vrcTrackingSteam.field_Private_SteamVR_ControllerManager_0;
+            }
+
+            throw new ApplicationException("SteamVR tracking not found");
+        }
+        
         public override void OnUpdate()
         {
             if (VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
@@ -98,7 +112,7 @@ namespace ThumbParam
                 paramIndex == -1)
                 return;
             
-            controller.field_Private_AvatarPlayableController_0.Method_Public_Boolean_Int32_Single_3(paramIndex, state);
+            controller.field_Private_AvatarPlayableController_0.Method_Public_Boolean_Int32_Single_1(paramIndex, state);
         }
 
         enum ThumbState
