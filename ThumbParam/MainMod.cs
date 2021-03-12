@@ -86,11 +86,11 @@ namespace ThumbParam
 
             var leftThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_VRCInput_0[
-                    "ThumbSpreadLeft"].field_Private_Single_6);
+                    "ThumbSpreadLeft"].field_Public_Single_0);
             
             var rightThumb = ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_VRCInput_0[
-                    "ThumbSpreadRight"].field_Private_Single_6);
+                    "ThumbSpreadRight"].field_Public_Single_0);
             
             AvatarAnimParamController controller = null;
             if (VRCPlayer.field_Internal_Static_VRCPlayer_0?.field_Private_VRC_AnimationController_0?.
