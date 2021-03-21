@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using MelonLoader;
-using ThumbParam;
+using ThumbParams;
 using UnityEngine;
+using VRC.SDK3.Avatars.Components;
 using VRC.SDK3.Avatars.ScriptableObjects;
 
-[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.3", "benaclejames")]
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.1.4", "benaclejames")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
-namespace ThumbParam
+namespace ThumbParams
 {
     public class MainMod : MelonMod
     {
@@ -20,6 +20,7 @@ namespace ThumbParam
             MelonCoroutines.Start(UpdateParamStores());
             MelonLogger.Msg(ConsoleColor.Cyan, "Initialized Sucessfully!");
         }
+        
 
         IEnumerator UpdateParamStores()
         {
@@ -34,18 +35,14 @@ namespace ThumbParam
         private static int GetParamIndex(string paramName)
         {
             VRCExpressionParameters.Parameter[] parameters = new VRCExpressionParameters.Parameter[0];
-
-            if (VRCPlayer
-                .field_Internal_Static_VRCPlayer_0?.prop_VRCAvatarManager_0?.prop_VRCAvatarDescriptor_0?.expressionParameters?.parameters != null)
-            {
-                parameters = VRCPlayer
+            
+            parameters = VRCPlayer
                     .field_Internal_Static_VRCPlayer_0
-                    .prop_VRCAvatarManager_0.prop_VRCAvatarDescriptor_0.expressionParameters
-                    .parameters;
+                    ?.field_Internal_GameObject_0?.GetComponent<VRCAvatarDescriptor>()?.expressionParameters
+                    ?.parameters;
 
-            }
-            else
-                return -1;
+
+            if (parameters == null) return -1;
             
             var index = -1;
             for (var i = 0; i < parameters.Length; i++)
@@ -92,13 +89,9 @@ namespace ThumbParam
                 .field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadRight"].field_Public_Single_0);
             
-            AvatarAnimParamController controller = null;
-            if (VRCPlayer.field_Internal_Static_VRCPlayer_0?.field_Private_VRC_AnimationController_0?.
-                field_Private_AvatarAnimParamController_0 != null)
-            {
-                controller = VRCPlayer.field_Internal_Static_VRCPlayer_0
-                    .field_Private_VRC_AnimationController_0.field_Private_AvatarAnimParamController_0;
-            }
+            var controller = VRCPlayer.field_Internal_Static_VRCPlayer_0
+                    ?.field_Private_VRC_AnimationController_0?.field_Private_AvatarAnimParamController_0;
+            
             
             SetParameter(controller, this.leftThumb, (int) leftThumb);
             SetParameter(controller, this.rightThumb, (int) rightThumb);
