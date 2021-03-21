@@ -38,7 +38,7 @@ namespace ThumbParams
             
             parameters = VRCPlayer
                     .field_Internal_Static_VRCPlayer_0
-                    ?.field_Internal_GameObject_0?.GetComponent<VRCAvatarDescriptor>()?.expressionParameters
+                    ?.prop_MonoBehaviourPublicInSiGaApGaMaBoGaLiBoUnique_0?.prop_VRCAvatarDescriptor_0?.expressionParameters
                     ?.parameters;
 
 
