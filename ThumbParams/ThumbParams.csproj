@@ -33,6 +33,8 @@
     </PropertyGroup>
     <ItemGroup>
       <Compile Include="MainMod.cs" />
+      <Compile Include="ParamLib\BaseParam.cs" />
+      <Compile Include="ParamLib\ParamLib.cs" />
     </ItemGroup>
     <ItemGroup>
       <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
