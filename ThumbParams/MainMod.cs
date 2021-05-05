@@ -5,7 +5,7 @@ using ThumbParams;
 using UnityEngine;
 using ParamLib;
 
-[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.2.1", "benaclejames")]
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.2.2", "benaclejames")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace ThumbParams
