@@ -12,7 +12,7 @@ namespace ThumbParams
 {
     public class MainMod : MelonMod
     {
-        private IntBaseParam rightThumbParam = new IntBaseParam("RightThumb"), leftThumbParam = new IntBaseParam("LeftThumb");
+        private readonly IntBaseParam _rightThumbParam = new IntBaseParam("RightThumb"), _leftThumbParam = new IntBaseParam("LeftThumb");
 
         public override void VRChat_OnUiManagerInit()
         {
@@ -26,8 +26,8 @@ namespace ThumbParams
             for (;;)
             {
                 yield return new WaitForSeconds(2);
-                rightThumbParam.ResetParam();
-                leftThumbParam.ResetParam();
+                _rightThumbParam.ResetParam();
+                _leftThumbParam.ResetParam();
             }
         }
 
@@ -39,11 +39,11 @@ namespace ThumbParams
                     "ThumbSpreadRight"] == null)
                 return;
 
-            leftThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
+            _leftThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadLeft"].field_Public_Single_0);
             
-            rightThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
+            _rightThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
                 .field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadRight"].field_Public_Single_0);
         }
