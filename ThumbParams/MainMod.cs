@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
+using System.Reflection;
 using MelonLoader;
 using ThumbParams;
 using UnityEngine;
@@ -14,14 +16,52 @@ namespace ThumbParams
     {
         private readonly IntBaseParam _rightThumbParam = new IntBaseParam("RightThumb"), _leftThumbParam = new IntBaseParam("LeftThumb");
 
-        public override void VRChat_OnUiManagerInit()
+        private Assembly _assemblyCSharp;
+        private Type _uiManager;
+        private MethodInfo _uiManagerInstance;
+        private bool _shouldCheckUiManager;
+        
+        public override void OnApplicationStart()
         {
-            MelonCoroutines.Start(UpdateParamStores());
-            MelonLogger.Msg(ConsoleColor.Cyan, "Initialized Sucessfully!");
+            _assemblyCSharp = AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(assembly => assembly.GetName().Name == "Assembly-CSharp");
+            _shouldCheckUiManager = typeof(MelonMod).GetMethod("VRChat_OnUiManagerInit") == null;
         }
         
+        public override void VRChat_OnUiManagerInit() => UiManagerInit();
+        
+        private void UiManagerInit()
+        {
+            MelonCoroutines.Start(UpdateParamStores());
+            MelonLogger.Msg(ConsoleColor.Cyan, "Initialized Successfully!");
+        }
 
-        IEnumerator UpdateParamStores()
+        private void CheckUiManager()
+        {
+            if (_assemblyCSharp == null) return;
+            
+            if (_uiManager == null) _uiManager = _assemblyCSharp.GetType("VRCUiManager");
+            if (_uiManager == null) {
+                _shouldCheckUiManager = false;
+                return;
+            }
+            
+            if (_uiManagerInstance == null)
+                _uiManagerInstance = _uiManager.GetMethods().First(x => x.ReturnType == _uiManager);
+            if (_uiManagerInstance == null)
+            {
+                _shouldCheckUiManager = false;
+                return;
+            }
+
+            if (_uiManagerInstance.Invoke(null, new object[0]) == null)
+                return;
+
+            _shouldCheckUiManager = false;
+            UiManagerInit();
+        }
+        
+        private IEnumerator UpdateParamStores()
         {
             for (;;)
             {
@@ -33,6 +73,8 @@ namespace ThumbParams
 
         public override void OnUpdate()
         {
+            if (_shouldCheckUiManager) CheckUiManager();
+            
             if (VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
                     "ThumbSpreadLeft"] == null ||
                 VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
