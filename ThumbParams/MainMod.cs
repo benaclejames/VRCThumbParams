@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
-using System.Reflection;
 using MelonLoader;
 using ThumbParams;
 using UnityEngine;
@@ -39,19 +37,19 @@ namespace ThumbParams
 
         public override void OnUpdate()
         {
-            if (VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0.get_Item(
-                    "ThumbSpreadLeft") == null ||
-                VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0.get_Item(
-                    "ThumbSpreadRight") == null)
+            if (VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
+                    "ThumbSpreadLeft"] == null ||
+                VRCInputManager.field_Private_Static_Dictionary_2_String_VRCInput_0[
+                    "ThumbSpreadRight"] == null)
                 return;
 
             _leftThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
-                .field_Private_Static_Dictionary_2_String_VRCInput_0.get_Item(
-                    "ThumbSpreadLeft").field_Public_Single_0);
+                .field_Private_Static_Dictionary_2_String_VRCInput_0[
+                    "ThumbSpreadLeft"].field_Public_Single_0);
             
             _rightThumbParam.ParamValue = (int)ConvertToThumbState(VRCInputManager
-                .field_Private_Static_Dictionary_2_String_VRCInput_0.get_Item(
-                    "ThumbSpreadRight").field_Public_Single_0);
+                .field_Private_Static_Dictionary_2_String_VRCInput_0[
+                    "ThumbSpreadRight"].field_Public_Single_0);
         }
 
         enum ThumbState
