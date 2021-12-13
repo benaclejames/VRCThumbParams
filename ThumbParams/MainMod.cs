@@ -5,7 +5,7 @@ using ThumbParams;
 using UnityEngine;
 using ParamLib;
 
-[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.2.5", "benaclejames")]
+[assembly: MelonInfo(typeof(MainMod), "ThumbParams", "1.2.6", "benaclejames")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace ThumbParams
@@ -13,13 +13,8 @@ namespace ThumbParams
     public class MainMod : MelonMod
     {
         private readonly IntBaseParam _rightThumbParam = new IntBaseParam("RightThumb"), _leftThumbParam = new IntBaseParam("LeftThumb");
-                
-        public override void OnApplicationStart()
-        {
-            UiManagerInit();
-        }
         
-        private void UiManagerInit()
+        public override void OnApplicationStart()
         {
             MelonCoroutines.Start(UpdateParamStores());
             MelonLogger.Msg(ConsoleColor.Cyan, "Initialized Successfully!");
