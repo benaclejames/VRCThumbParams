@@ -25,6 +25,18 @@ The mod will set these parameters with an integer from 0-4 representing the posi
 | 3     | Trackpad      |
 | 4     | Thumbstick    |
 
+Additionally, bool versions of the thumb positions are available to save on parameter space. They're mapped as:
+
+* \[Left/Right]AButton
+* \[Left/Right]BButton
+* \[Left/Right]TrackPad
+* \[Left/Right]ThumbStick
+
+A special bool is also available to detect if the thumb is on either the A or B buttons. This is useful
+on the Valve Index since generally when your thumb is resting in that area, both are being touched.
+
+* \[Left/Right]ABButtons
+
 From these, you're free to modify and/or play animations from your animation controllers however you wish!
 
 ## 📜 Disclaimer
